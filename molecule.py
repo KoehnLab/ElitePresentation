@@ -1,6 +1,24 @@
 from rdkit.Chem import AllChem
 import py3Dmol
 
+# Imports for visualization script
+import stk, stko
+from rdkit import Chem 
+from rdkit.Chem import AllChem as rdkit
+from collections import defaultdict
+from rdkit.Chem import rdFMCS
+from rdkit.Chem import Draw
+from rdkit.Chem.Draw import IPythonConsole
+from rdkit.Chem import rdDistGeom
+import py3Dmol
+from IPython.display import Image
+import matplotlib.pyplot as plt
+import subprocess
+import time
+import stk
+import stko
+import spindry as spd
+
 class Atom(dict):
     
     def __init__(self, line):
@@ -48,6 +66,8 @@ class Atom(dict):
         return "".join(line) + "\n"
 
 class Molecule(list):
+
+    cyan_colorscheme = False
     
     def __init__(self, file):
         
@@ -66,16 +86,21 @@ class Molecule(list):
             outstr += str(at)
 
         return outstr
-    
+
+def set_cyan_colorscheme():
+    Molecule.cyan_colorscheme = True
+
 def show_stk_mol(stk_mol):
 
     data = AllChem.MolToMolBlock(stk_mol.to_rdkit_mol())
+
+    colorscheme = 'cyanCarbon' if Molecule.cyan_colorscheme else 'greyCarbon'
     
     p = py3Dmol.view(
         
         data=data,
         
-        style={'stick':{'colorscheme':'greyCarbon'}}, 
+        style={'stick':{'colorscheme':colorscheme}}, 
         
         width=400,
         
