@@ -1,15 +1,30 @@
 import py3Dmol
+from ase.io.trajectory import Trajectory
+from ase.io import read, write
+from molecule import *
 
 class TrajectoryVisualizer:
     
     view = py3Dmol.view(width=400, height=300)
 
-    def __init__(self, mols):
-        self.molecules = mols
+    def __init__(self, file):
+        self.file = file
 
     def create_trajectory(self):
 
-        for mol in self.molecules:
+        trajectory = Trajectory(self.file)
+
+        molecules = []
+
+        for atoms in trajectory:
+
+            write( 'intermediary.pdb', atoms )
+
+            with open( 'intermediary.pdb' ) as ifile: molecule = Molecule(ifile)
+
+            molecules.append( molecule )
+
+        for mol in molecules:
         
             for at in mol:
                 
@@ -23,7 +38,7 @@ class TrajectoryVisualizer:
 
         models = ""
 
-        for i, mol in enumerate(self.molecules):
+        for i, mol in enumerate(molecules):
             
             models += "MODEL " + str(i) + "\n"
             
@@ -33,11 +48,13 @@ class TrajectoryVisualizer:
             
         self.view.addModelsAsFrames(models)
 
+        return molecules
+
     def show_trajectory(self):
 
-        self.create_trajectory()
+        molecules = self.create_trajectory()
 
-        for i, at in enumerate(self.molecules[0]):
+        for i, at in enumerate(molecules[0]):
         
             default = {'stick':{'colorscheme':'greyCarbon'}}
             

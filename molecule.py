@@ -100,7 +100,7 @@ def show_stk_mol(stk_mol):
         
         data=data,
         
-        style={'stick':{'colorscheme':colorscheme}}, 
+        style={'stick':{'colorscheme':colorscheme, 'singleBonds':True}}, 
         
         width=400,
         
