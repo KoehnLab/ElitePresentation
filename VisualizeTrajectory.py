@@ -1,8 +1,7 @@
 import py3Dmol
 from ase.io.trajectory import Trajectory
 from ase.io import read, write
-from molecule import *
-import os, io
+import os
 
 class TrajectoryVisualizer:
     
