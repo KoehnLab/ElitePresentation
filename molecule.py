@@ -1,6 +1,9 @@
 from rdkit.Chem import AllChem
 import py3Dmol
 import stk, stko
+from rdkit import Chem 
+from rdkit.Chem import Draw
+from rdkit.Chem.Draw import IPythonConsole
 
 class Molecule:
     cyan_colorscheme = False
