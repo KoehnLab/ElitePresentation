@@ -2,6 +2,7 @@ import py3Dmol
 from ase.io.trajectory import Trajectory
 from ase.io import read, write
 from molecule import *
+import os, io
 
 class TrajectoryVisualizer:
     
@@ -12,56 +13,39 @@ class TrajectoryVisualizer:
 
     def create_trajectory(self):
 
-        trajectory = Trajectory(self.file)
+        traj = Trajectory(self.file)
 
-        molecules = []
-
-        for atoms in trajectory:
-
-            write( 'intermediary.pdb', atoms )
-
-            with open( 'intermediary.pdb' ) as ifile: molecule = Molecule(ifile)
-
-            molecules.append( molecule )
-
-        for mol in molecules:
+        #get current working directory and make a scratch 
+        #directory
+        path = os.getcwd()
+        path = path + '/scratch'
+        if not os.path.exists(path): os.makedirs(path)
         
-            for at in mol:
-                
-                if at["resname"] == "PRO":
-                    
-                    at["pymol"] = {"stick": {'color': "yellow"}}
-                    
-                elif at["resname"] == "GLY":
-                    
-                    at["pymol"] = {"stick": {'color': 'blue'}}
+        #output file name
+        outFileName = 'trajectory.xyz'
 
-        models = ""
-
-        for i, mol in enumerate(molecules):
-            
-            models += "MODEL " + str(i) + "\n"
-            
-            models += str(mol)
-            
-            models += "ENDMDL\n"
-            
-        self.view.addModelsAsFrames(models)
-
-        return molecules
+        #write each structure from the .traj file in .xyz format
+        for i in range(0, len(traj)):
+            atoms = traj[i]
+            string = 'structure%03d' % (i,) +'.xyz'
+            outStruct = os.path.join(path, string)
+            write(outStruct, atoms)
+            #combines all optimization structures in one trajectory 
+            #file
+            inFile = open(os.path.join(path, 'structure%03d' % 
+                        (i,)  +'.xyz'), 'r')
+            fileStr = inFile.read()
+            outFile = open(outFileName, 'a')
+            outFile.write(fileStr)
 
     def show_trajectory(self):
 
-        molecules = self.create_trajectory()
+        self.create_trajectory()
 
-        for i, at in enumerate(molecules[0]):
-        
-            default = {'stick':{'colorscheme':'greyCarbon'}}
-            
-            self.view.setStyle({'model': -1, 'serial': i+1}, at.get("pymol", default))
+        xyz_data = open('trajectory.xyz',"r").read()
 
-        self.view.zoomTo()
-
-        self.view.animate({'loop': "forward"})
-
+        self.view.addModelsAsFrames(xyz_data)
+        self.view.animate({"loop": "forward"})
+        # visualize with the stick option - can also consider spheres and more
+        self.view.setStyle({"stick": {'colorscheme':'greyCarbon'}})
         self.view.show()
