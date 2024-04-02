@@ -33,7 +33,7 @@ def show_molecule(stk_mol):
     p.setBackgroundColor('0xeeeeee')
     p.zoomTo()
     styles = ["stick","sphere"]
-    return interact(draw_mol, p=fixed(p), style=styles)
+    return interact(draw_mol, p=fixed(p), style=widgets.ToggleButtons(options=styles,disabled=False,button_style=''))
 
 def __show_smiles(smiles = "CCCC", style = "stick", optimize = False):
     try:
