@@ -1,7 +1,6 @@
 from ase.io import read, write
-from tblite.ase import TBLite
 from ase.optimize import BFGS
-
+from IPython.display import Markdown, display
 
 class TrajectoryCalculator():
     
@@ -11,6 +10,11 @@ class TrajectoryCalculator():
         self.output = output
     
     def run_calculation(self):
+        try:
+            from tblite.ase import TBLite
+        except:
+            display(Markdown('<span style="color: #ff0000">Cannot run calculation. TBLite not provided.</span>.'))
+            return
         atoms = read( self.file )
         atoms.calc = TBLite( method = self.method )
         dynamics = BFGS( atoms, trajectory = self.output )
