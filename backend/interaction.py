@@ -55,7 +55,8 @@ def __show_structure_formula(stk_mol):
     formula = stk_mol.to_rdkit_mol()
     formula = Chem.RemoveHs( formula )
     AllChem.Compute2DCoords( formula )
-    return Draw.MolToImage(formula, size=(400,400))
+    pil = Draw.MolToImage(formula, size=(400,400))
+    return display(pil)
 
 def __show_structure_formula(smiles = "CCCC", optimize = False):
     try:
@@ -106,7 +107,7 @@ def show_molecule_from_smiles(smiles = "CCCC", show_structure_formula = False):
     if show_structure_formula:
         return __show_both(smiles = smiles, style = styles, optimize = [True, False])
     
-    return interact(__show_smiles, smiles = smiles, style = styles, optimize = [True, False])
+    return interact(__show_smiles, smiles = smiles, style = widgets.ToggleButtons(options=styles,disabled=False,button_style=''), optimize = widgets.Checkbox(value = False, description = "Optimierung"))
 
 def show_structure_from_file(file_path):
     return Chem.Draw.MolToImage(Chem.MolFromMolFile(file_path), size=(400,400))
