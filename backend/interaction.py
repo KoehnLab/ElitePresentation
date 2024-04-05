@@ -130,4 +130,8 @@ def show_molecule_from_smiles(smiles = "CCCC", show_structure_formula = False):
     return interact(__show_smiles, smiles = smiles, style = widgets.ToggleButtons(options=styles,disabled=False,button_style=''), optimize = widgets.Checkbox(value = False, description = "Optimierung"))
 
 def show_structure_from_file(file_path):
-    return Chem.Draw.MolToImage(Chem.MolFromMolFile(file_path), size=(400,400))
+    mol = Chem.MolFromMolFile(file_path)
+    mol = Chem.RemoveHs( mol )
+    AllChem.Compute2DCoords( mol ) 
+    pil = Chem.Draw.MolToImage(mol, size=(400,400))
+    return display(pil)
