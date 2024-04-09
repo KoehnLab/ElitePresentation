@@ -94,8 +94,8 @@ def __show_structure_formula(smiles = "CCCC", optimize = False):
 
 
 def __show_both(smiles = "CCCC", style = "stick", optimize = False):
-    if smiles == "":
-        sm = widgets.Text(value = "CCCC", placeholder = 'String', description = 'SMILES', disabled = False, layout={'width': 'auto'})
+    if isinstance(smiles, str):
+        sm = widgets.Text(value = smiles, placeholder = 'String', description = 'SMILES', disabled = False, layout={'width': 'auto'})
     else:
         sm = widgets.Dropdown(options = smiles, value = smiles[0], description = "SMILES", layout={'width': 'auto'})
     

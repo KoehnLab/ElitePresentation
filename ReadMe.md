@@ -5,7 +5,7 @@ Am Institut für Theoretische Chemie der Universität Stuttgart.
 In diesem Online Notebook könnt ihr vorgefertigte Skripte und Visualisierungen testen.
 Klick einfach auf die Badge.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/KoehnLab/ElitePresentation/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/KoehnLab/ElitePresentation/HEAD?labpath=tutorial.ipynb)
 
 ## Zum selbst Installieren
 Um das Notebook auf eurem Laptop oder PC auszuprobieren, müsst ihr zuerst das Projekt herunterladen und ein paar Softwarepakete installieren.
@@ -39,6 +39,11 @@ In dem Terminal könnt ihr ein Paket zum Beispiel so
 pip install numpy
 ```
 installieren.
+Um alle Pakete auf einmal zu installieren könnt ihr den Befehl
+```
+pip install -r requirements.txt
+```
+verwenden.
 
 ### Jupyter Lab
 Um mit Jupyter Notebooks arbeiten zu können empfehlen wir [Jupyter Lab](https://jupyter.org/install) zu installieren.
