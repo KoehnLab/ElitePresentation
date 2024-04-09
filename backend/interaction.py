@@ -9,6 +9,7 @@ from IPython.display import Markdown, display
 def draw_mol(p,style='stick', pdb_color_scheme="nucleic"):
         if (style == "cartoon"):
             p.setStyle({style:{'colorscheme':pdb_color_scheme}})
+            # See https://3dmol.org/doc/global.html#builtinColorSchemes
         else:
             p.setStyle({style:{'colorscheme':'grayCarbon', 'singleBonds':True}})
         return p.show()
