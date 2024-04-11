@@ -1,5 +1,5 @@
-# Elite Präsentation
-Am Institut für Theoretische Chemie der Universität Stuttgart.
+# Kleines Tutorial zum Vortrag in der Elite-Akademie am 19.4.2024
+Institut für Theoretische Chemie der Universität Stuttgart.
 
 ## Interaktives Online Notebook
 In diesem Online Notebook könnt ihr vorgefertigte Skripte und Visualisierungen testen.
@@ -31,7 +31,7 @@ sudo apt install python3 python3-pip
 ```
 
 ### Python Pakete
-Mit der Installation von Python wird auch der Pythoneigene Packagemanager *pip* mitgeliefert.
+Mit der Installation von Python wird auch der pythoneigene Packagemanager *pip* mitgeliefert.
 Mit diesem können nun alle notwendigen Pakete installiert werden.
 Alle nötigen Pakete sind in der Datei [requirements.txt](requirements.txt) aufgelistet.
 In dem Terminal könnt ihr ein Paket zum Beispiel so
