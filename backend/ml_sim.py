@@ -27,7 +27,7 @@ class MLSimulation():
 
     def run_simulation(self):
         # Read with rdkit
-        mol = Chem.MolFromMolFile(self.mol_file)
+        mol = Chem.MolFromMolFile(self.mol_file, removeHs=False)
         # Convert for use in ase
         positions = mol.GetConformer().GetPositions()  # Get atomic positions
         atomic_numbers = [atom.GetAtomicNum() for atom in mol.GetAtoms()]  # Get atomic numbers
@@ -50,7 +50,7 @@ class MLSimulation():
         dynamics = Langevin(
             self.atoms,
             timestep=1.0 * units.fs,
-            temperature_K=200.0,  # temperature in K
+            temperature_K=298.0,  # temperature in K
             friction=0.01 / units.fs,
             trajectory = self.output_trajectory
         )
