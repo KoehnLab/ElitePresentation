@@ -20,7 +20,7 @@ Das Zip kann nach dem Herunterladen in einem Ordner eurer Wahl entpackt werden.
 
 
 ### Python
-#### Windows
+#### Windows und Mac OS
 Falls ihr es noch nicht installiert habt: [Python](https://www.python.org/downloads/)
 
 #### Linux
