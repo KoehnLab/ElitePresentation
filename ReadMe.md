@@ -3,7 +3,7 @@ Institut für Theoretische Chemie der Universität Stuttgart.
 
 ## Interaktives Online Notebook
 In diesem Online Notebook könnt ihr vorgefertigte Skripte und Visualisierungen testen.
-Klick einfach auf die Badge.
+Klick einfach auf das "launch binder" Icon.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/KoehnLab/ElitePresentation/HEAD?labpath=tutorial.ipynb)
 
@@ -20,7 +20,7 @@ Das Zip kann nach dem Herunterladen in einem Ordner eurer Wahl entpackt werden.
 
 
 ### Python
-#### Windows
+#### Windows und Mac OS
 Falls ihr es noch nicht installiert habt: [Python](https://www.python.org/downloads/)
 
 #### Linux
