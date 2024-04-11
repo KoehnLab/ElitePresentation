@@ -4,7 +4,7 @@ stko
 py3Dmol
 rdkit
 ase
-tblite
+schnetpack
 matplotlib
 spindry
 ipywidgets
